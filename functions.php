@@ -69,3 +69,24 @@ function getProductsInCategory(string $category, array $data): array {
           
 }
 
+/**
+ * Return string of products.
+ *
+ * @param string $category
+ * @param array $data
+ *
+ * @return string
+ */
+   
+ function doGetProductsInCategory(string $category, array $data): string{
+       
+   $results = getProductsInCategory($category, $data);
+   $return = "";
+   if(count($results) > 0){
+        for ($x = 0; $x <= (count($results) - 1); $x++) {
+            $name = $results[$x]->name;
+            $return .= "<span>$name</span>"; 
+        }
+   }
+   return $return;
+}
