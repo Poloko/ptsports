@@ -19,4 +19,33 @@ function getProductsInCategory(string $category, array $data): array {
     }
     return [];
 }
-   
+    
+/**
+ * Return bool if product exists in category.
+ *
+ * @param string $category
+ * @param string $product
+ * @param array $data
+ *
+ * @return bool
+ */
+
+ function doesProductExistInCategory(string $category, string $product, array $data): bool {
+    // Loop though data
+    for ($x = 0; $x <= (count($data) - 1); $x++) {
+         //check for needed category
+        if($data[$x]->name == $category){
+             //loop through product array
+             for ($t = 0; $t <= (count($data[$x]->products)- 1); $t++) {
+                //check if product exists in category
+                if($product == $data[$x]->products[$t]->name){
+                //If found return true
+                return true;
+                }
+            }
+        }
+    }
+    //not found return false
+    return false;
+}   
+
