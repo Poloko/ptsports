@@ -1,0 +1,43 @@
+p{
+    display: block;
+}
+
+span{
+    background: #fff;
+    padding: 3px;
+}
+
+table{
+    width: 100%;
+}
+
+.wprapper{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+td:first-child{
+    background-color: black;
+    color: antiquewhite;
+}
+
+td:last-child{
+    display: flex;
+    gap: 10px;
+    padding: 3px;
+    background: antiquewhite;
+}
+
+.answer{
+    padding: 5px;
+    background-color: greenyellow;
+
+}
+
+.products{
+    display: flex;
+    justify-content: space-around;
+    background: greenyellow;
+    padding: 5px;
+}
