@@ -1,0 +1,19 @@
+{
+    "name": "poloko/ptsports",
+    "description": "assestment",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Poloko\\Ptsports\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Poloko",
+            "email": "polokoserero@gmail.com"
+        }
+    ],
+    "require": {}
+}
