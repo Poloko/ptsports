@@ -49,3 +49,23 @@ function getProductsInCategory(string $category, array $data): array {
     return false;
 }   
 
+/**
+ * Return string if product exists in category.
+ *
+ * @param string $category
+ * @param string $product
+ * @param array $data
+ *
+ * @return string
+ */
+   
+ function doCheckProductInCategory(string $category, string $product, array $data): string{
+   
+   if( doesProductExistInCategory($category, $product, $data)){
+       return "Yes found";
+   } 
+       
+   return "No not found";
+          
+}
+
