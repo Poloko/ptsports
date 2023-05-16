@@ -1,92 +1,55 @@
 <?php
-require_once('src/autoload.php');
+require_once('src/classes/autoload.php');
 
-/**
- * Return a products inside a category.
- *
- * @param string $category
- *
- * @return array
- */
-function getProductsInCategory(string $category, array $data): array {
-    // Loop through data
-    for ($x = 0; $x <= (count($data) - 1); $x++) {
-        //check for needed category
-        if($data[$x]->name == $category){
-            //If true return products
-            return $data[$x]->products;
-        }
-    }
-    return [];
-}
-    
-/**
- * Return bool if product exists in category.
- *
- * @param string $category
- * @param string $product
- * @param array $data
- *
- * @return bool
- */
+use App\Category;
+use App\Product;
 
- function doesProductExistInCategory(string $category, string $product, array $data): bool {
-    // Loop though data
-    for ($x = 0; $x <= (count($data) - 1); $x++) {
-         //check for needed category
-        if($data[$x]->name == $category){
-             //loop through product array
-             for ($t = 0; $t <= (count($data[$x]->products)- 1); $t++) {
-                //check if product exists in category
-                if($product == $data[$x]->products[$t]->name){
-                //If found return true
-                return true;
-                }
+//data array
+$data = [
+     new Category('Mens', [new Product('Blue Shirt'), new Product('Red T-Shirt'), new Product('Cargo Pants'), new Product('Shorts')]),
+     new Category('Womens', [new Product('Pink Shirt'), new Product('Purple T-Shirt'), new Product('High Heels'), new Product('Dress')]),
+     new Category('Kids', [new Product('Sneakers'), new Product('Toy Car'), new Product('Hoverboard'), new Product('Toy Plain'), new Product('Toy Duck')]),
+];
+
+//handle ajax request
+if(isset($_POST['search'])){
+    //collet search variables
+    $searchFor = $_POST['search'];
+    //create results variable
+    $result = "";
+    //search
+    for($x=0; $x < count($data); $x++){
+        //check if correct category
+        if($data[$x]->name == $searchFor['in']){
+            //Check for all request else find single item
+            if(strtolower($searchFor['item']) == "all"){
+                //set result as products from category
+                $result = $data[$x]->doGetProductsInCategory();
+            } else {
+                //check for single product in category
+                $result = $data[$x]->doCheckProductInCategory($searchFor['item']);
             }
         }
     }
-    //not found return false
-    return false;
-}   
-
-/**
- * Return string if product exists in category.
- *
- * @param string $category
- * @param string $product
- * @param array $data
- *
- * @return string
- */
-   
- function doCheckProductInCategory(string $category, string $product, array $data): string{
-   
-   if( doesProductExistInCategory($category, $product, $data)){
-       return "Yes found";
-   } 
-       
-   return "No not found";
-          
+    //result
+    echo $result;
 }
 
-/**
- * Return string of products.
- *
- * @param string $category
- * @param array $data
- *
- * @return string
- */
-   
- function doGetProductsInCategory(string $category, array $data): string{
-       
-   $results = getProductsInCategory($category, $data);
-   $return = "";
-   if(count($results) > 0){
-        for ($x = 0; $x <= (count($results) - 1); $x++) {
-            $name = $results[$x]->name;
-            $return .= "<span>$name</span>"; 
+function makeProducts(){
+    GLOBAL $data;
+    $products = "";
+    //loop through data
+    for($x=0; $x < count($data); $x++){
+        //create content
+        $products .= '<div class="products"><div>'.$data[$x]->name."</div><div>";
+        //loop through products
+        for($t=0; $t < count($data[$x]->products); $t++){
+            //get product name
+            $product = $data[$x]->products[$t]->name;
+            $products .= "<span>$product</span>"; 
         }
-   }
-   return $return;
+        //close divs
+        $products .= "</div></div>";
+    } 
+    echo $products;
 }
