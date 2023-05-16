@@ -1,5 +1,6 @@
 <?php
-require_once('src/Product.php');
+require_once('src/classes/App/Product.php');
+use App\Product;
 use PHPUnit\Framework\TestCase;
 
 final class ProductTest extends TestCase
