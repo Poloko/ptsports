@@ -1,12 +1,14 @@
 <?php
 require_once('src/classes/App/Category.php');
-use App\Catergory;
+require_once('src/classes/App/Product.php');
+use App\Category;
+use App\Product;
 use PHPUnit\Framework\TestCase;
 
 final class CategoryTest extends TestCase
 {
     public function testClassConstructor(){
-        $category = new Category('Mens', ['t-shirt', 'pants', 'vest']);
+        $category = new Category('Mens', [new Product('t-shirt'), new Product('pants'), new Product('vest')]);
 
         $this->assertSame('Mens', $category->name);
         $this->assertIsString($category->name);
@@ -16,10 +18,7 @@ final class CategoryTest extends TestCase
         $this->assertIsArray($category->get_products());
         $this->assertNotNull($category->get_products());
 
-        $this->assertIsBool($category->doesProductExistInCategory('Blue Shirt'));
-        $this->assertTrue($category->doesProductExistInCategory('Blue Shirt'));
-
-        $this->assertIsBool($category->doesProductExistInCategory('Black Shirt'));
+        $this->assertTrue($category->doesProductExistInCategory('vest'));
         $this->assertFalse($category->doesProductExistInCategory('Black Shirt'));
 
         
@@ -28,7 +27,7 @@ final class CategoryTest extends TestCase
         
         $this->assertIsString($category->doCheckProductInCategory('Blue Shirt'));
         $this->assertNotNull($category->doCheckProductInCategory('Blue Shirt'));
-        $this->assertSame('Yes found', $category->doCheckProductInCategory( 'Blue Shirt'));
-        $this->assertSame('No not found', $category->doCheckProductInCategory( 'Black Shirt'));
+        $this->assertSame('Yes pants found', $category->doCheckProductInCategory( 'pants'));
+        $this->assertSame('No socks not found', $category->doCheckProductInCategory( 'socks'));
     }
 }

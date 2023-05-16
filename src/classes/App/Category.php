@@ -1,6 +1,6 @@
 <?php
 namespace App;
-require($_SERVER['DOCUMENT_ROOT'] .'/ptsports/src/interfaces/Search.php');
+require('interfaces/Search.php');
 
 class Category implements Search {
 
