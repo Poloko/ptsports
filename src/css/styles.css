@@ -1,0 +1,132 @@
+h1{
+    margin-bottom: 0;
+}
+
+p{
+    display: block;
+}
+
+span{
+    border: #fff 2px solid;
+    border-radius: 20px;
+    color: #fff;
+    padding: 10px;
+}
+
+table{
+    width: 100%;
+}
+
+input[type=submit]{
+    padding: 3px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #fff;
+    color: #391818;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+sub{
+    font-size: 10px;
+}
+.wprapper{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 0 100px;
+}
+
+td:first-child{
+    background-color: black;
+    color: antiquewhite;
+}
+
+td:last-child{
+    display: flex;
+    gap: 10px;
+    padding: 3px;
+    background: antiquewhite;
+}
+
+.answer{
+    padding: 5px;
+    background-color: greenyellow;
+
+}
+
+.products{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: darkgreen;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ccc;
+    align-items: center;
+}
+.products div:first-child{
+    color: #fff;
+    font-weight: bolder;
+    font-size: 36px;
+}
+.products div:last-child{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 5px;
+    gap: 10px;
+    max-width: 60%;
+}
+.search{
+    background: darkgreen;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px #ccc;
+    color: #fff;
+}
+
+.search form{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+#resultArea{
+    background: darkseagreen;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#result{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media screen and (min-width: 768px){
+    
+
+    .products{
+        flex-direction: row;
+        align-items: unset;
+    }
+    
+
+    .search form{
+        flex-direction: row;
+    }
+    #result{
+        flex-direction: row;
+    }
+}
